@@ -6,12 +6,12 @@ public class Main {
 
     // ===== PERSONAGEM PRINCIPAL =====
     static int playerX = 100;
-    static int playerY = 370;
+    static int playerY = 490;
     static int velocidade = 15;
 
     // ===== POSIÇÕES DOS NPCS =====
     static int[] npcX = {250, 500, 750, 1000, 1250};
-    static int[] npcY = {370, 370, 370, 370, 370};
+    static int[] npcY = {490, 490, 490, 490, 490};
 
     // ===== CONTROLE DAS PERGUNTAS =====
     static boolean[] perguntaFeita = {
