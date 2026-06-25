@@ -3,35 +3,33 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Main {
-
-    public static void main(String[] args) {
-
-        // ===== JANELA ÚNICA =====
+    static void main() {
+        // ===== janela unica =====
         JFrame janela = new JFrame("O Peso das Escolhas");
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // ===== CARDLAYOUT =====
+        // ===== cardlayout =====
         CardLayout cardLayout = new CardLayout();
         JPanel container = new JPanel(cardLayout);
 
-        // ===== BOTÕES =====
+        // ===== botoes =====
         JButton botaoComecar = new JButton("COMEÇAR O JOGO");
         JButton botaoTela3   = new JButton("VOU TE AJUDAR COM CERTEZA!");
         JButton finalizar    = new JButton("VAMOS PARA O JOGO!");
 
-        // ===== TELAS 1, 2 e 3 =====
+        // ===== telas 1, 2 e 3 (metodos) =====
         JPanel painel1 = Telas.criarTela1(botaoComecar);
         JPanel painel2 = Telas.criarTela2(botaoTela3);
         JPanel painel3 = Telas.criarTela3(finalizar);
 
-        // ===== FUNDOS DOS 3 MAPAS =====
+        // ===== fundos dos mapas 1, 2 e 3 =====
         Image[] fundos = {
-            new ImageIcon("img/fundoPrincipal.jpeg").getImage(), // mapa 1
-            new ImageIcon("img/fundoMapa2.jpeg").getImage(),     // mapa 2
-            new ImageIcon("img/fundoMapa3.jpeg").getImage()      // mapa 3
+                new ImageIcon("img/fundoPrincipal.jpeg").getImage(), // mapa 1
+                new ImageIcon("img/fundoMapa2.jpeg").getImage(),     // mapa 2
+                new ImageIcon("img/fundoMapa3.jpeg").getImage()      // mapa 3
         };
 
-        // ===== PAINEL DO JOGO =====
+        // ===== painel do jogo =====
         JPanel[] painelRef = new JPanel[1];
         Jogo[] jogoRef     = new Jogo[1];
 
@@ -55,27 +53,27 @@ public class Main {
 
                 Image spriteAtual = jogador.getSpriteAtual(jogo.isAndando());
 
-                // ===== FUNDO DO MAPA ATUAL =====
+                // ===== fundo do mapa atual =====
                 int idxFundo = jogo.getMapaAtual() - 1;
                 g.drawImage(fundos[idxFundo], 0, 0, W, H, this);
 
-                // ===== DESENHAR NPCS =====
+                // ===== desenhar npcs (mostrar) =====
                 for (NPC npc : npcs) npc.desenhar(g, W, H);
 
-                // ===== DESENHAR JOGADOR =====
+                // ===== desenhar jogador principal =====
                 g.drawImage(spriteAtual, jogador.getX(), jogador.getY(),
                         jogador.getLargura(W), jogador.getAltura(H), this);
 
 
                 /*
-                // ===== DEBUG: MOSTRAR OBSTÁCULOS =====
+                // ===== mostrar obstáculos (impedir passagem) =====
                 jogo.getObstaculos().desenharDebug(g, W, H, jogo.getMapaAtual());
 
-                // ===== DEBUG: HITBOX DO JOGADOR =====
+                // ===== mostrar hitbox dos jogadores =====
                 g.setColor(Color.YELLOW);
                 g.drawRect(jogador.getX(), jogador.getY(), jogador.getLargura(W), jogador.getAltura(H));
 
-                // ===== DEBUG: HITBOX DOS NPCS =====
+                // ===== mostrar hitbox npcs =====
                 g.setColor(Color.CYAN);
                 for (NPC npc : npcs) {
                     if (!npc.isPerguntaFeita()) {
@@ -85,12 +83,12 @@ public class Main {
                 */
 
 
-                // ===== PONTUAÇÃO =====
+                // ===== pontuação canto superior esquerdo =====
                 g.setColor(Color.WHITE);
                 g.setFont(new Font("Arial", Font.BOLD, 30));
                 g.drawString("Pontos: " + jogo.getPontos(), 30, 50);
 
-                // ===== INDICADOR DE MAPA =====
+                // ===== fase canto superior esquerdo =====
                 g.setFont(new Font("Arial", Font.BOLD, 20));
                 g.drawString("Fase " + jogo.getMapaAtual() + " de 3", 30, 85);
             }
@@ -98,17 +96,17 @@ public class Main {
         painelJogo.setLayout(null);
         painelRef[0] = painelJogo;
 
-        // ===== CRIAR JOGO =====
+        // ===== criando o jogo =====
         Jogo jogo = new Jogo(janela, painelJogo, () -> painelJogo.repaint());
         jogoRef[0] = jogo;
 
-        // ===== ADICIONAR TELAS AO CONTAINER =====
+        // ===== adicionar telas ao container =====
         container.add(painel1,    "tela1");
         container.add(painel2,    "tela2");
         container.add(painel3,    "tela3");
         container.add(painelJogo, "tela4");
 
-        // ===== AÇÕES DOS BOTÕES =====
+        // ===== ações dos botoes =====
         botaoComecar.addActionListener(e -> cardLayout.show(container, "tela2"));
         botaoTela3.addActionListener(e   -> cardLayout.show(container, "tela3"));
         finalizar.addActionListener(e    -> {
@@ -117,7 +115,7 @@ public class Main {
             janela.requestFocus();
         });
 
-        // ===== TECLADO =====
+        // ===== uso do teclado =====
         janela.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -139,7 +137,7 @@ public class Main {
             }
         });
 
-        // ===== CONFIGURAR JANELA =====
+        // ===== configurar janela =====
         janela.add(container);
         janela.setExtendedState(JFrame.MAXIMIZED_BOTH);
         janela.setVisible(true);

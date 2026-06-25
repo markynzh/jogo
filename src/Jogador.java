@@ -3,24 +3,24 @@ import java.awt.*;
 
 public class Jogador {
 
-    // ===== POSIÇÃO =====
+    // ===== posição =====
     private int x;
     private int y;
     private int velocidade;
 
-    // ===== DIREÇÃO E ANIMAÇÃO =====
+    // ===== direção e animação =====
     private String direcao;
     private int frameAnimacao;
     private int contadorAnimacao;
     private static final int VELOCIDADE_ANIMACAO = 10;
 
-    // ===== SPRITES ESTÁTICOS =====
+    // ===== sprites estáticos (parados) =====
     private Image spFrente;
     private Image spCostas;
     private Image spDireita;
     private Image spEsquerda;
 
-    // ===== SPRITES ANDANDO =====
+    // ===== sprites andando =====
     private Image spAndandoFrente;
     private Image spAndandoCostas;
     private Image spAndandoDireita;
@@ -44,7 +44,7 @@ public class Jogador {
         spAndandoEsquerda = new ImageIcon("img/player_mov_esquerda.png").getImage();
     }
 
-    // ===== INICIALIZA POSIÇÃO NA PRIMEIRA VEZ =====
+    // ===== inicializa posição na primeira vez =====
     public void inicializarPosicao(int W, int H) {
         if (x == 0 && y == 0) {
             x = (int)(W * 0.50);
@@ -52,13 +52,13 @@ public class Jogador {
         }
     }
 
-    // ===== RESETAR POSIÇÃO (ao trocar de mapa) =====
+    // ===== resetar posição (ao trocar de mapa) =====
     public void resetarPosicao() {
         x = 0;
         y = 0;
     }
 
-    // ===== MOVIMENTAÇÃO =====
+    // ===== movimentação =====
     public void mover(boolean w, boolean s, boolean a, boolean d) {
         if (w) { y -= velocidade; direcao = "costas"; }
         if (s) { y += velocidade; direcao = "frente"; }
@@ -66,7 +66,7 @@ public class Jogador {
         if (d) { x += velocidade; direcao = "direita"; }
     }
 
-    // ===== LIMITES DA TELA =====
+    // ===== aplicar limites da tela =====
     public void aplicarLimites(int W, int H) {
         int larg = getLargura(W);
         int alt  = getAltura(H);
@@ -76,7 +76,7 @@ public class Jogador {
         if (y + alt  > H) y = H - alt;
     }
 
-    // ===== ATUALIZAR ANIMAÇÃO =====
+    // ===== atualizar animação ao mexer =====
     public void atualizarAnimacao() {
         contadorAnimacao++;
         if (contadorAnimacao >= VELOCIDADE_ANIMACAO) {
@@ -85,7 +85,7 @@ public class Jogador {
         }
     }
 
-    // ===== SPRITE ATUAL =====
+    // ===== sprite atual =====
     public Image getSpriteAtual(boolean estaAndando) {
         if (estaAndando && frameAnimacao == 1) {
             switch (direcao) {
@@ -104,16 +104,16 @@ public class Jogador {
         }
     }
 
-    // ===== HITBOX =====
+    // ===== hitbox =====
     public Rectangle getHitbox(int W, int H) {
         return new Rectangle(x, y, getLargura(W), getAltura(H));
     }
 
-    // ===== TAMANHO PROPORCIONAL =====
+    // ===== tamanho proporcional =====
     public int getLargura(int W) { return (int)(W * 0.04); }
     public int getAltura(int H)  { return (int)(H * 0.15); }
 
-    // ===== GETTERS E SETTERS =====
+    // ===== metodos getters e setters =====
     public int getX() { return x; }
     public int getY() { return y; }
     public void setX(int x) { this.x = x; }

@@ -4,7 +4,7 @@ import java.awt.event.*;
 
 public class DialogoPersonalizado extends JDialog {
 
-    // ===== CORES =====
+    // ===== cores =====
     private static final Color COR_FUNDO        = new Color(20, 10, 35);
     private static final Color COR_BORDA        = new Color(140, 80, 200);
     private static final Color COR_BORDA_INTERNA = new Color(80, 40, 120);
@@ -14,15 +14,15 @@ public class DialogoPersonalizado extends JDialog {
     private static final Color COR_BOTAO_BORDA  = new Color(160, 90, 220);
     private static final Color COR_TITULO       = new Color(200, 150, 255);
 
-    // ===== FONTE PIXEL =====
+    // ===== fonte pixelada =====
     private static final Font FONTE_TITULO  = new Font("Monospaced", Font.BOLD, 16);
     private static final Font FONTE_TEXTO   = new Font("Monospaced", Font.PLAIN, 15);
     private static final Font FONTE_BOTAO   = new Font("Monospaced", Font.BOLD, 14);
 
-    // ===== RESULTADO =====
+    // ===== resultado =====
     private int escolha = -1;
 
-    // ===== CONSTRUTOR PARA PERGUNTA COM OPÇÕES =====
+    // ===== construtor da pergunta com opcoes =====
     public DialogoPersonalizado(JFrame pai, String pergunta, String[] opcoes) {
         super(pai, true);
         setUndecorated(true);
@@ -34,21 +34,21 @@ public class DialogoPersonalizado extends JDialog {
                 super.paintComponent(g);
                 Graphics2D g2 = (Graphics2D) g;
 
-                // ===== FUNDO =====
+                // ===== fundo =====
                 g2.setColor(COR_FUNDO);
                 g2.fillRect(0, 0, getWidth(), getHeight());
 
-                // ===== BORDA EXTERNA =====
+                // ===== borda externa =====
                 g2.setColor(COR_BORDA);
                 g2.setStroke(new BasicStroke(3));
                 g2.drawRect(2, 2, getWidth() - 5, getHeight() - 5);
 
-                // ===== BORDA INTERNA =====
+                // ===== borda interna =====
                 g2.setColor(COR_BORDA_INTERNA);
                 g2.setStroke(new BasicStroke(1));
                 g2.drawRect(6, 6, getWidth() - 13, getHeight() - 13);
 
-                // ===== LINHA DO TÍTULO =====
+                // ===== linha do titulo =====
                 g2.setColor(COR_BORDA);
                 g2.fillRect(6, 35, getWidth() - 13, 2);
             }
@@ -57,13 +57,13 @@ public class DialogoPersonalizado extends JDialog {
         painelPrincipal.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         painelPrincipal.setOpaque(false);
 
-        // ===== TÍTULO =====
+        // ===== título =====
         JLabel titulo = new JLabel("▶ O PESO DAS ESCOLHAS");
         titulo.setFont(FONTE_TITULO);
         titulo.setForeground(COR_TITULO);
         titulo.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
 
-        // ===== TEXTO DA PERGUNTA =====
+        // ===== texto da pergunta (dialogo) =====
         JTextArea textoPergunta = new JTextArea(quebrarTexto(pergunta, 55));
         textoPergunta.setFont(FONTE_TEXTO);
         textoPergunta.setForeground(COR_TEXTO);
@@ -74,7 +74,7 @@ public class DialogoPersonalizado extends JDialog {
         textoPergunta.setWrapStyleWord(true);
         textoPergunta.setBorder(BorderFactory.createEmptyBorder(10, 5, 10, 5));
 
-        // ===== PAINEL DOS BOTÕES =====
+        // ===== painel dos botoes =====
         JPanel painelBotoes = new JPanel();
         painelBotoes.setLayout(new BoxLayout(painelBotoes, BoxLayout.Y_AXIS));
         painelBotoes.setOpaque(false);
@@ -91,7 +91,7 @@ public class DialogoPersonalizado extends JDialog {
             painelBotoes.add(Box.createVerticalStrut(6));
         }
 
-        // ===== MONTAGEM =====
+        // ===== montagem =====
         JPanel painelTopo = new JPanel(new BorderLayout());
         painelTopo.setOpaque(false);
         painelTopo.add(titulo, BorderLayout.NORTH);
@@ -105,7 +105,7 @@ public class DialogoPersonalizado extends JDialog {
         setLocationRelativeTo(pai);
     }
 
-    // ===== CONSTRUTOR PARA MENSAGEM SIMPLES =====
+    // ===== construtor para a mensagem simples =====
     public DialogoPersonalizado(JFrame pai, String mensagem) {
         super(pai, true);
         setUndecorated(true);
@@ -136,13 +136,13 @@ public class DialogoPersonalizado extends JDialog {
         painelPrincipal.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         painelPrincipal.setOpaque(false);
 
-        // ===== TÍTULO =====
+        // ===== titulo caixa de texto =====
         JLabel titulo = new JLabel("▶ O PESO DAS ESCOLHAS");
         titulo.setFont(FONTE_TITULO);
         titulo.setForeground(COR_TITULO);
         titulo.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
 
-        // ===== MENSAGEM =====
+        // ===== mensagem =====
         JTextArea textoMensagem = new JTextArea(mensagem);
         textoMensagem.setFont(FONTE_TEXTO);
         textoMensagem.setForeground(COR_TEXTO);
@@ -153,7 +153,7 @@ public class DialogoPersonalizado extends JDialog {
         textoMensagem.setWrapStyleWord(true);
         textoMensagem.setBorder(BorderFactory.createEmptyBorder(10, 5, 10, 5));
 
-        // ===== BOTÃO OK =====
+        // ===== botao "OK" =====
         JButton botaoOk = criarBotaoOpcao("[ OK ]");
         botaoOk.addActionListener(e -> dispose());
 
@@ -174,7 +174,7 @@ public class DialogoPersonalizado extends JDialog {
         setLocationRelativeTo(pai);
     }
 
-    // ===== CRIAR BOTÃO ESTILIZADO =====
+    // ===== criacao botao estilizado =====
     private JButton criarBotaoOpcao(String texto) {
         JButton botao = new JButton(texto) {
             @Override
@@ -204,7 +204,7 @@ public class DialogoPersonalizado extends JDialog {
         return botao;
     }
 
-    // ===== QUEBRAR TEXTO EM LINHAS =====
+    // ===== quebrar texto em linhas =====
     private String quebrarTexto(String texto, int larguraMax) {
         StringBuilder resultado = new StringBuilder();
         String[] palavras = texto.split(" ");
@@ -221,10 +221,10 @@ public class DialogoPersonalizado extends JDialog {
         return resultado.toString();
     }
 
-    // ===== RETORNA A ESCOLHA =====
+    // ===== retorno da escolha =====
     public int getEscolha() { return escolha; }
 
-    // ===== MÉTODOS ESTÁTICOS PARA SUBSTITUIR O JOPTIONPANE =====
+    // ===== metodos estatios substituir JOption =====
     public static int mostrarPergunta(JFrame pai, String pergunta, String[] opcoes) {
         DialogoPersonalizado dialogo = new DialogoPersonalizado(pai, pergunta, opcoes);
         dialogo.setVisible(true);

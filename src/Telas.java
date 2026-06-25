@@ -4,7 +4,7 @@ import java.awt.event.*;
 
 public class Telas {
 
-    // ===== CORES DO PADRÃO DIALOGO =====
+    // ===== cores do padrao dialogo =====
     private static final Color COR_FUNDO        = new Color(20, 10, 35);
     private static final Color COR_BORDA        = new Color(140, 80, 200);
     private static final Color COR_BOTAO_FUNDO  = new Color(60, 20, 100);
@@ -12,10 +12,10 @@ public class Telas {
     private static final Color COR_BOTAO_BORDA  = new Color(160, 90, 220);
     private static final Color COR_TEXTO        = new Color(230, 210, 255);
 
-    // ===== FONTE PIXEL =====
+    // ===== fonte pixelada =====
     private static final Font FONTE_BOTAO = new Font("Monospaced", Font.BOLD, 14);
 
-    // ===== FACTORY: BOTÃO ESTILIZADO =====
+    // ===== botoes iniciais estilizados =====
     public static JButton criarBotaoEstilizado(String texto) {
         JButton botao = new JButton(texto) {
             @Override
@@ -23,7 +23,7 @@ public class Telas {
                 Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-                // Fundo
+                // fundo
                 if (getModel().isRollover()) {
                     g2.setColor(COR_BOTAO_HOVER);
                 } else {
@@ -31,17 +31,17 @@ public class Telas {
                 }
                 g2.fillRect(0, 0, getWidth(), getHeight());
 
-                // Borda externa roxa
+                // borda externa roxa
                 g2.setColor(COR_BORDA);
                 g2.setStroke(new BasicStroke(3));
                 g2.drawRect(1, 1, getWidth() - 3, getHeight() - 3);
 
-                // Borda interna mais suave
+                // borda interna mais suave
                 g2.setColor(COR_BOTAO_BORDA);
                 g2.setStroke(new BasicStroke(1));
                 g2.drawRect(4, 4, getWidth() - 9, getHeight() - 9);
 
-                // Texto
+                // texto
                 g2.setFont(getFont());
                 g2.setColor(COR_TEXTO);
                 FontMetrics fm = g2.getFontMetrics();
@@ -52,7 +52,7 @@ public class Telas {
 
             @Override
             protected void paintBorder(Graphics g) {
-                // Não pintar borda padrão — feita no paintComponent
+                // não pintar borda padrão — feita no paintComponent
             }
         };
 
@@ -67,7 +67,7 @@ public class Telas {
         return botao;
     }
 
-    // ===== TELA 1 =====
+    // ===== tela 1 =====
     public static JPanel criarTela1(JButton botaoComecar) {
         aplicarEstilo(botaoComecar, "COMEÇAR O JOGO");
 
@@ -94,7 +94,7 @@ public class Telas {
         return painel;
     }
 
-    // ===== TELA 2 =====
+    // ===== tela 2 =====
     public static JPanel criarTela2(JButton botaoTela3) {
         aplicarEstilo(botaoTela3, "VOU TE AJUDAR COM CERTEZA!");
 
@@ -121,7 +121,7 @@ public class Telas {
         return painel;
     }
 
-    // ===== TELA 3 =====
+    // ===== tela 3 =====
     public static JPanel criarTela3(JButton finalizar) {
         aplicarEstilo(finalizar, "VAMOS PARA O JOGO!");
 
@@ -148,7 +148,7 @@ public class Telas {
         return painel;
     }
 
-    // ===== APLICAR ESTILO E TEXTO AO BOTÃO EXISTENTE =====
+    // ===== aplicar estilo e texto ao botao existente =====
     private static void aplicarEstilo(JButton botao, String novoTexto) {
         botao.setText(novoTexto);
         botao.setFont(FONTE_BOTAO);
@@ -166,7 +166,7 @@ public class Telas {
 
                 AbstractButton b = (AbstractButton) c;
 
-                // Fundo
+                // fundo
                 if (b.getModel().isRollover()) {
                     g2.setColor(COR_BOTAO_HOVER);
                 } else {
@@ -174,17 +174,17 @@ public class Telas {
                 }
                 g2.fillRect(0, 0, c.getWidth(), c.getHeight());
 
-                // Borda externa
+                // borda externa
                 g2.setColor(COR_BORDA);
                 g2.setStroke(new BasicStroke(3));
                 g2.drawRect(1, 1, c.getWidth() - 3, c.getHeight() - 3);
 
-                // Borda interna
+                // borda interna
                 g2.setColor(COR_BOTAO_BORDA);
                 g2.setStroke(new BasicStroke(1));
                 g2.drawRect(4, 4, c.getWidth() - 9, c.getHeight() - 9);
 
-                // Texto centralizado
+                // texto centralizado
                 g2.setFont(b.getFont());
                 g2.setColor(COR_TEXTO);
                 FontMetrics fm = g2.getFontMetrics();

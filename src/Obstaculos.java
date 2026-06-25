@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Obstaculos {
 
-    // ===== MAPA 1 =====
+    // ===== mapa 1 =====
     private static final double[][] obstaculosMapa1 = {
             {0.0,  0.0,  0.26, 0.25}, // Prédios/lojas topo esq
             {0.26, 0.0,  0.74, 0.25}, // Prédios/lojas topo centro
@@ -20,7 +20,7 @@ public class Obstaculos {
             {0.81, 0.56, 0.88, 0.65}, // Topo da árvore 2
     };
 
-    // ===== MAPA 2 (Shopping) =====
+    // ===== mapa 2 =====
     private static final double[][] obstaculosMapa2 = {
             {0.0,  0.0,  1.0,  0.08}, // Lojas topo
             {0.0,  0.0,  0.07, 0.14}, // Parede esq topo
@@ -36,7 +36,7 @@ public class Obstaculos {
             {0.795, 0.735, 1.00, 0.765},  // Loja beleza
     };
 
-    // ===== MAPA 3 (Rua noturna) =====
+    // ===== mapa 3 =====
     private static final double[][] obstaculosMapa3 = {
             {0.0,  0.0,  1.0,  0.11}, // Grade/rio topo
             {0.02, 0.09, 0.13, 0.35}, // Arvore esq topo (com margem esq para jogador passar pela borda)
@@ -55,7 +55,7 @@ public class Obstaculos {
             {0.38, 0.85, 0.57, 0.91}, // Portao baixo
     };
 
-    // ===== RETORNA OBSTÁCULOS DO MAPA ATUAL =====
+    // ===== retorna obstaculos do mapa atual =====
     private double[][] getObstaculos(int mapa) {
         switch (mapa) {
             case 2:  return obstaculosMapa2;
@@ -64,7 +64,7 @@ public class Obstaculos {
         }
     }
 
-    // ===== VERIFICA COLISÃO E DESFAZ MOVIMENTO =====
+    // ===== verifica colisao e desfaz movimento =====
     public void verificarColisao(Jogador jogador, int W, int H,
                                  boolean w, boolean s, boolean a, boolean d,
                                  int mapa) {
@@ -88,7 +88,7 @@ public class Obstaculos {
         }
     }
 
-    // ===== DESENHAR DEBUG =====
+    // ===== desenhar os obstaculos (debug) =====
     public void desenharDebug(Graphics g, int W, int H, int mapa) {
         g.setColor(new Color(255, 0, 0, 100));
         for (double[] obs : getObstaculos(mapa)) {

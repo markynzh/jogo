@@ -3,35 +3,35 @@ import java.awt.*;
 
 public class Jogo {
 
-    // ===== MAPA ATUAL =====
+    // ===== mapa atual =====
     private int mapaAtual = 1; // 1, 2 ou 3
 
-    // ===== OBJETOS DO JOGO =====
+    // ===== objetos do jogo =====
     private Jogador jogador;
     private Obstaculos obstaculos;
 
-    // ===== NPCS POR MAPA =====
+    // ===== npcs por mapa =====
     private NPC[] npcsMapa1;
     private NPC[] npcsMapa2;
     private NPC[] npcsMapa3;
 
-    // ===== PONTUAÇÃO =====
+    // ===== pontuacao =====
     private int pontos;
 
-    // ===== CONTROLE DE TECLAS =====
+    // ===== controle das teclas =====
     private boolean wPressionado = false;
     private boolean sPressionado = false;
     private boolean aPressionado = false;
     private boolean dPressionado = false;
 
-    // ===== TIMER =====
+    // ===== timer =====
     private Timer timer;
 
-    // ===== REFERÊNCIAS =====
+    // ===== referencias =====
     private JFrame janela;
     private JPanel painelJogo;
 
-    // ===== CALLBACK PARA TROCAR MAPA =====
+    // ===== callback para trocar de mapa =====
     private Runnable onTrocarMapa;
 
     public Jogo(JFrame janela, JPanel painelJogo, Runnable onTrocarMapa) {
@@ -43,7 +43,7 @@ public class Jogo {
         jogador    = new Jogador();
         obstaculos = new Obstaculos();
 
-        // ===== NPCS MAPA 1 =====
+        // ===== npcs no mapa 1 =====
         npcsMapa1 = new NPC[]{
             new NPC(0.22, 0.33, "img/npc1.png",
                 "Quando eu fico com muita raiva da minha namorada, às vezes eu a empurro para que ela pare de discutir.",
@@ -67,58 +67,58 @@ public class Jogo {
                 0, 2),
         };
 
-        // ===== NPCS MAPA 2 =====
+        // ===== npcs no mapa 2 =====
         npcsMapa2 = new NPC[]{
                 new NPC(0.07, 0.20, "img/npc6.png",
                         "Eu faço minha namorada se sentir culpada quando sai com amigos, pois não gosto quando ela sai sem mim.",
-                        new String[]{"Isso é controle emocional e violência psicológica.", "Ciúme é prova de amor.", "Você só está protegendo ela."},
-                        0, 1),
+                        new String[]{"Você só está protegendo ela.", "Ciúme é prova de amor.", "Isso é controle emocional e violência psicológica."},
+                        2, 1),
                 new NPC(0.47, 0.16, "img/npc7.png",
                         "Minha ex fica me mandando mensagem pedindo para eu parar de espalhar fofoca dela, mas eu continuo porque ela merece.",
                         new String[]{"Você precisa parar de fazer isso agora!", "Ela não sabe de nada, merece mesmo.", "Isso acontece às vezes, relaxa."},
                         0, 1),
                 new NPC(0.85, 0.52, "img/npc8.png",
                         "Quando minha namorada me irrita, eu escondo o celular dela.",
-                        new String[]{"Controlar ou esconder objetos pessoais é violência.", "Você só quer chamar atenção dela.", "Depois você devolve, tá de boa."},
-                        0, 1),
+                        new String[]{"Depois você devolve, tá de boa.", "Controlar ou esconder objetos pessoais é violência.", "Você só quer chamar atenção dela."},
+                        1, 2),
                 new NPC(0.30, 0.76, "img/npc9.png",
                         "Meu namorado me chama de inútil e me bate quando eu faço algo que ele não gosta.",
-                        new String[]{"Você precisa denunciar ele, ele não pode te bater.", "Ele só fez sem pensar, além dele estar certo.", "Talvez ele já esteja acostumada."},
-                        0, 1),
+                        new String[]{"Você precisa denunciar ele, ele não pode te bater.","Talvez ele já esteja acostumada.", "Ele só fez sem pensar, além dele estar certo."},
+                        0, 2),
                 new NPC(0.73, 0.82, "img/npc10.png",
                         "Ele insiste em manter contato físico mesmo quando eu não quero.",
-                        new String[]{"Você não consentiu, isso é crime!", "Ele só tá demonstrando carinho.", "Você deve aceitar isso, ele te ama."},
-                        0, 1),
+                        new String[]{"Ele só tá demonstrando carinho.", "Você não consentiu, isso é crime!", "Você deve aceitar isso, ele te ama."},
+                        1, 0),
         };
 
-        // ===== NPCS MAPA 3 =====
+        // ===== npcs no mapa 3 =====
         npcsMapa3 = new NPC[]{
                 new NPC(0.23, 0.42, "img/npc11.png",
                         "Eu falei que não queria beijar ele, mas ele insistiu mesmo assim.",
-                        new String[]{"Se você não queria, ele deveria respeitar. Vamos denunciar.", "Talvez ele só estivesse animado.", "Isso acontece às vezes."},
-                        0, 1),
+                        new String[]{"Talvez ele só estivesse animado.", "Se você não queria, ele deveria respeitar. Vamos denunciar.", "Isso acontece às vezes."},
+                        1, 0),
                 new NPC(0.30, 0.13, "img/npc12.png",
                         "Eu compartilhei a senha do celular da minha namorada com meus amigos sem ela saber.",
                         new String[]{"Violar a privacidade de alguém é errado e pode ser crime.", "Entre casal não pode ter segredo.", "Depende do que tinha no celular."},
                         0, 1),
                 new NPC(0.68, 0.67, "img/npc13.png",
                         "Meu namorado controla tudo: o que eu visto, com quem falo e onde vou.",
-                        new String[]{"Isso é controle e isolamento, formas de violência.", "Ele só quer o melhor para você.", "Todo casal tem suas regras."},
-                        0, 1),
+                        new String[]{"Todo casal tem suas regras.", "Ele só quer o melhor para você.", "Isso é controle e isolamento, formas de violência."},
+                        2, 1),
                 new NPC(0.57, 0.20, "img/npc14.png",
                         "Vi um colega humilhando a namorada dele na frente de todo mundo e todo mundo riu.",
-                        new String[]{"Humilhar alguém em público é violência moral. Deveria intervir.", "Foi só uma brincadeira, não tem problema.", "Não é problema meu me meter."},
-                        0, 1),
+                        new String[]{"Humilhar alguém em público é violência moral. Deveria intervir."," Não é problema meu me meter." , "Foi só uma brincadeira, não tem problema."},
+                        0, 2),
                 new NPC(0.92, 0.32, "img/npc15.png",
                         "Vi um colega empurrando a namorada dele na minha frente.",
-                        new String[]{"Isso é violência física e deve ser denunciado.", "Foi só discussão.", "Isso acontece em brigas."},
-                        0, 1),
+                        new String[]{"Isso acontece às vezes.", "Isso é violência física e deve ser denunciado.", "Foi só discussão. ele precisava impor respeito."},
+                        1, 2),
         };
 
         timer = new Timer(16, e -> atualizar());
     }
 
-    // ===== NPCS DO MAPA ATUAL =====
+    // ===== npcs mapa atual =====
     public NPC[] getNpcsAtuais() {
         switch (mapaAtual) {
             case 2:  return npcsMapa2;
@@ -127,7 +127,7 @@ public class Jogo {
         }
     }
 
-    // ===== ATUALIZAÇÃO DA LÓGICA =====
+    // ===== atualização da lógica do jogo =====
     private void atualizar() {
         int W = painelJogo.getWidth();
         int H = painelJogo.getHeight();
@@ -152,14 +152,14 @@ public class Jogo {
         painelJogo.repaint();
     }
 
-    // ===== VERIFICAR FIM DO MAPA =====
+    // ===== verificar fim do mapa atual =====
     private void verificarFimDeMapa() {
         for (NPC npc : getNpcsAtuais()) {
             if (!npc.isPerguntaFeita()) return;
         }
 
         if (mapaAtual < 3) {
-            // ===== TRANSIÇÃO PARA O PRÓXIMO MAPA =====
+            // ===== transição para o próximo mapa =====
             String msg = mapaAtual == 1
                 ? "Você ajudou todos aqui!\nVamos para o próximo lugar..."
                 : "Incrível! Mais um lugar ajudado!\nVamos para o último lugar...";
@@ -168,7 +168,7 @@ public class Jogo {
             jogador.resetarPosicao();
             onTrocarMapa.run();
         } else {
-            // ===== FIM DO JOGO =====
+            // ===== feedback fim do jogo  =====
             String feedback;
             if (pontos < 80) {
                 feedback = "Você precisa estudar mais sobre o assunto.";
@@ -183,7 +183,7 @@ public class Jogo {
         }
     }
 
-    // ===== PARAR TECLAS =====
+    // ===== parar pressionamento das teclas =====
     public void pararTeclas() {
         wPressionado = false;
         sPressionado = false;
@@ -191,17 +191,17 @@ public class Jogo {
         dPressionado = false;
     }
 
-    // ===== INICIAR TIMER =====
+    // ===== iniciar timer =====
     public void iniciar() { timer.start(); }
 
-    // ===== GETTERS =====
+    // ===== metodos getters =====
     public Jogador getJogador()       { return jogador; }
     public NPC[] getNpcs()            { return getNpcsAtuais(); }
     public Obstaculos getObstaculos() { return obstaculos; }
     public int getPontos()            { return pontos; }
     public int getMapaAtual()         { return mapaAtual; }
 
-    // ===== CONTROLE DE TECLAS =====
+    // ===== controle das teclas =====
     public void setW(boolean v) { wPressionado = v; }
     public void setS(boolean v) { sPressionado = v; }
     public void setA(boolean v) { aPressionado = v; }
