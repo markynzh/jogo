@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Main {
-    static void main() {
+    public static void main(String[] args) {
         // ===== janela unica =====
         JFrame janela = new JFrame("O Peso das Escolhas");
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,11 +63,29 @@ public class Main {
                 // ===== desenhar jogador principal =====
                 g.drawImage(spriteAtual, jogador.getX(), jogador.getY(),
                         jogador.getLargura(W), jogador.getAltura(H), this);
+                /*
 
+                // COORDENADAS DO MOUSE
+                Point p = MouseInfo.getPointerInfo().getLocation();
+                SwingUtilities.convertPointFromScreen(p, this);
+
+                g.setColor(Color.WHITE);
+                g.setFont(new Font("Arial", Font.BOLD, 18));
+
+                g.drawString("Mouse: " + p.x + ", " + p.y, 30, 120);
+                g.drawString(
+                        String.format("(%.3f, %.3f)",
+                                p.x / (double) getWidth(),
+                                p.y / (double) getHeight()),
+                        30, 145
+                );
+
+                 */
 
                 /*
                 // ===== mostrar obstáculos (impedir passagem) =====
                 jogo.getObstaculos().desenharDebug(g, W, H, jogo.getMapaAtual());
+
 
                 // ===== mostrar hitbox dos jogadores =====
                 g.setColor(Color.YELLOW);
@@ -80,7 +98,9 @@ public class Main {
                         g.drawRect(npc.getX(), npc.getY(), npc.getHitboxLargura(W), npc.getHitboxAltura(H));
                     }
                 }
-                */
+
+                 */
+
 
 
                 // ===== pontuação canto superior esquerdo =====
