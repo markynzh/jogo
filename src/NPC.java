@@ -24,13 +24,16 @@ public class NPC {
     // ===== explicacao detalhada mostrada como feedback apos a resposta =====
     private String explicacao;
 
+    // ===== categoria/tipo de violencia (usado no resumo da tela final) =====
+    private String categoria;
+
     // ===== controle das perguntas =====
     private boolean perguntaFeita;
 
     // ===== construtor com imagem de situacao especifica =====
     public NPC(double xP, double yP, String caminhoImagem, String caminhoImagemViolencia,
                String pergunta, String[] opcoes,
-               int opcaoCorreta, int opcaoErrada, String explicacao) {
+               int opcaoCorreta, int opcaoErrada, String explicacao, String categoria) {
         this.xProporcional  = xP;
         this.yProporcional  = yP;
         this.imagem         = new ImageIcon(caminhoImagem).getImage();
@@ -40,14 +43,15 @@ public class NPC {
         this.opcaoCorreta   = opcaoCorreta;
         this.opcaoErrada    = opcaoErrada;
         this.explicacao     = explicacao;
+        this.categoria      = categoria;
         this.perguntaFeita  = false;
     }
 
     // ===== construtor sem imagem de situacao (usa o retrato do npc no dialogo) =====
     public NPC(double xP, double yP, String caminhoImagem,
                String pergunta, String[] opcoes,
-               int opcaoCorreta, int opcaoErrada, String explicacao) {
-        this(xP, yP, caminhoImagem, caminhoImagem, pergunta, opcoes, opcaoCorreta, opcaoErrada, explicacao);
+               int opcaoCorreta, int opcaoErrada, String explicacao, String categoria) {
+        this(xP, yP, caminhoImagem, caminhoImagem, pergunta, opcoes, opcaoCorreta, opcaoErrada, explicacao, categoria);
     }
 
     // ===== atualiza posicao baseada no tamanho da tela =====
@@ -105,6 +109,7 @@ public class NPC {
     public String[] getOpcoes() { return opcoes; }
     public Image getImagem() { return imagem; }
     public Image getImagemViolencia() { return imagemViolencia; }
+    public String getCategoria() { return categoria; }
     public int getX() { return x; }
     public int getY() { return y; }
 }
