@@ -68,7 +68,7 @@ public class Telas {
     }
 
     // ===== tela 1 =====
-    public static JPanel criarTela1(JButton botaoComecar) {
+    public static JPanel criarTela1(JButton botaoComecar, JButton botaoSair) {
         aplicarEstilo(botaoComecar, "COMEÇAR O JOGO");
 
         JPanel painel = new JPanel() {
@@ -81,6 +81,7 @@ public class Telas {
         };
         painel.setLayout(null);
         painel.add(botaoComecar);
+        painel.add(botaoSair);
 
         painel.addComponentListener(new ComponentAdapter() {
             @Override
@@ -88,6 +89,7 @@ public class Telas {
                 int w = painel.getWidth();
                 int h = painel.getHeight();
                 botaoComecar.setBounds(w / 2 - 140, (int)(h * 0.80), 280, 42);
+                botaoSair.setBounds(w / 2 - 140, (int)(h * 0.80) + 52, 280, 42);
             }
         });
 

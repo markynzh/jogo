@@ -89,14 +89,18 @@ public class NPC {
         return sb.toString();
     }
 
-    // ===== hitbox =====
+    // ===== hitbox (centralizada no sprite do npc) =====
     public Rectangle getHitbox(int W, int H) {
-        return new Rectangle(x, y, getHitboxLargura(W), getHitboxAltura(H));
+        int hLarg = getHitboxLargura(W);
+        int hAlt  = getHitboxAltura(H);
+        int hx = x + (getLargura(W) - hLarg) / 2;
+        int hy = y + (getAltura(H) - hAlt) / 2;
+        return new Rectangle(hx, hy, hLarg, hAlt);
     }
 
-    // ===== tamanho da hitbox =====
-    public int getHitboxLargura(int W) { return (int)(W * 0.03); }
-    public int getHitboxAltura(int H)  { return (int)(H * 0.05); }
+    // ===== tamanho da hitbox (menor que o npc, exige aproximacao maior para iniciar o dialogo) =====
+    public int getHitboxLargura(int W) { return (int)(W * 0.015); }
+    public int getHitboxAltura(int H)  { return (int)(H * 0.025); }
 
     // ===== tamanho proporcional =====
     public int getLargura(int W) { return (int)(W * 0.04); }

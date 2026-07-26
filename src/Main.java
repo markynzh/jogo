@@ -2,10 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Main {
-
+public class  Main {
     public static void main(String[] args) {
-
         // ===== janela unica =====
         JFrame janela = new JFrame("O Peso das Escolhas");
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -19,9 +17,11 @@ public class Main {
         JButton botaoComecar = new JButton("COMEÇAR O JOGO");
         JButton botaoTela3   = new JButton("VOU TE AJUDAR COM CERTEZA!");
         JButton finalizar    = new JButton("VAMOS PARA O JOGO!");
+        JButton botaoSairJogo = Telas.criarBotaoEstilizado("SAIR DO JOGO");
+        botaoSairJogo.addActionListener(e -> { janela.dispose(); System.exit(0); });
 
         // ===== telas 1, 2 e 3 =====
-        JPanel painel1 = Telas.criarTela1(botaoComecar);
+        JPanel painel1 = Telas.criarTela1(botaoComecar, botaoSairJogo);
         JPanel painel2 = Telas.criarTela2(botaoTela3);
         JPanel painel3 = Telas.criarTela3(finalizar);
 
@@ -150,7 +150,7 @@ public class Main {
 
                 // ===== pontuação =====
                 g.setColor(Color.WHITE);
-                g.setFont(new Font("Arial", Font.BOLD, 30));
+                g.setFont(new Font("Monospaced", Font.BOLD, 30));
                 g.drawString("Pontos: " + jogo.getPontos(), 30, 50);
             }
         };
